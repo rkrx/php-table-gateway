@@ -81,6 +81,22 @@ class TableGateway {
 	}
 
 	/**
+	 * @param array $primaryKey
+	 * @param array $options
+	 * @return TableGatewayResultRow
+	 * @throws Exception
+	 */
+	public function get(array $primaryKey, array $options = []) {
+		$select = $this->select($primaryKey, $options);
+		$select->query()->limit(1);
+		$rows = $this->select()->getIterator();
+		foreach($rows as $row) {
+			return $row;
+		}
+		throw new Exception('Entity not found');
+	}
+
+	/**
 	 * @param array $data
 	 * @param array $options
 	 * @return int
