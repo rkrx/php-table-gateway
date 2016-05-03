@@ -1,0 +1,31 @@
+{
+	"name": "rkr/table-gateway",
+	"description": "Easy to use query builder for PHP5.3+/PDO",
+	"license": "MIT",
+	"authors": [{
+		"name": "ron",
+		"email": "ron.kirschler@gmail.com"
+	}],
+	"require": {
+		"php": ">= 5.4",
+		"ext-pdo": "*",
+		"ext-spl": "*",
+		"rkr/php-mysql-query-builder": "*",
+		"psr/log": "~1"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~4.0",
+		"phake/phake": "1.0.5",
+		"rkr/fakepdo": "0.1.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Kir\\MySQL\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Kir\\MySQL\\": ["src/", "tests/"]
+		}
+	}
+}
