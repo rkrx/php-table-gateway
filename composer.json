@@ -20,7 +20,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Kir\\MySQL\\": "src/"
+			"Kir\\TableGateway\\": "src/"
 		}
 	},
 	"autoload-dev": {
