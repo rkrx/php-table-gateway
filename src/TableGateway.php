@@ -125,7 +125,7 @@ class TableGateway {
 		if(array_key_exists('debug', $options)) {
 			$insert->debug($options['debug']);
 		}
-		return $insert->debug()->run();
+		return $insert->run();
 	}
 
 	/**
@@ -157,7 +157,7 @@ class TableGateway {
 		if(array_key_exists('debug', $options)) {
 			$insert->debug($options['debug']);
 		}
-		return $insert->debug()->run();
+		return $insert->run();
 	}
 
 	/**
@@ -190,7 +190,7 @@ class TableGateway {
 		if(array_key_exists('debug', $options)) {
 			$update->debug($options['debug']);
 		}
-		return $update->debug()->run();
+		return $update->run();
 	}
 
 	/**
@@ -222,6 +222,6 @@ class TableGateway {
 		if(array_key_exists('debug', $options)) {
 			$delete->debug($options['debug']);
 		}
-		return $delete->debug()->run();
+		return $delete->run();
 	}
 }
