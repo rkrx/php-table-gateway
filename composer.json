@@ -1,6 +1,6 @@
 {
 	"name": "rkr/table-gateway",
-	"description": "Easy to use query builder for PHP5.3+/PDO",
+	"description": "A table gateway component on top of rkr/php-mysql-query-builder",
 	"license": "MIT",
 	"authors": [{
 		"name": "ron",
