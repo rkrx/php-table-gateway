@@ -210,9 +210,38 @@ class TableGateway {
 			$data = array_merge($options['delete-defaults'], $data);
 		}
 		$keyData = array_intersect_key($data, array_combine($this->primaryKeys, $this->primaryKeys));
-		if(count($keyData) !== count($this->primaryKeys) && !$options['allow-delete-all']) {
+		if(count($keyData) !== count($this->primaryKeys)) {
 			throw new Exception("You try to delete all data from {$this->tableName} which is not allowed by configuration");
 		}
+		foreach($keyData as $fieldName => $value) {
+			$delete->where(sprintf("%s=?", $this->db->quoteField($fieldName)), $value);
+		}
+		foreach($this->options['forced-predefined-field-values'] as $fieldName => $value) {
+			$delete->where(sprintf("%s=?", $this->db->quoteField($fieldName)), $value);
+		}
+		if(array_key_exists('debug', $options)) {
+			$delete->debug($options['debug']);
+		}
+		return $delete->run();
+	}
+
+	/**
+	 * @param array $data
+	 * @param array $options
+	 * @return int
+	 * @throws Exception
+	 */
+	public function deleteAll(array $data = null, array $options = []) {
+		if(!is_array($data)) {
+			throw new Exception('Missing data parameter');
+		}
+		$options = array_merge($this->options, $options);
+		$delete = $this->db->delete()
+		->from($this->tableName);
+		if(array_key_exists('delete-defaults', $options)) {
+			$data = array_merge($options['delete-defaults'], $data);
+		}
+		$keyData = array_intersect_key($data, array_combine($this->primaryKeys, $this->primaryKeys));
 		foreach($keyData as $fieldName => $value) {
 			$delete->where(sprintf("%s=?", $this->db->quoteField($fieldName)), $value);
 		}
