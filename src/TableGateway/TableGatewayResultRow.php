@@ -33,14 +33,16 @@ class TableGatewayResultRow implements ArrayAccess, IteratorAggregate, Countable
 	 * @return int
 	 */
 	public function save() {
-		return call_user_func($this->saveCallback, $this->row);
+		$saveCallback = $this->saveCallback;
+		return $saveCallback($this->row);
 	}
 
 	/**
 	 * @return int
 	 */
 	public function remove() {
-		return call_user_func($this->deleteCallback, $this->row);
+		$deleteCallback = $this->deleteCallback;
+		return $deleteCallback($this->row);
 	}
 
 	/**

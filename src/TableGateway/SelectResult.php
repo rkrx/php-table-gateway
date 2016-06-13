@@ -43,7 +43,8 @@ class SelectResult implements IteratorAggregate {
 	 */
 	public function getIterator() {
 		return $this->select->fetchRowsLazy(function (array $row) {
-			return call_user_func($this->rowFactoryCallback, $row);
+			$cb = $this->rowFactoryCallback;
+			return $cb($row);
 		});
 	}
 }
